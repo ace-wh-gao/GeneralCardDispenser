@@ -1,0 +1,107 @@
+// GeneralCardDispenser.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(GeneralCardDispenser.tlb)，该类型库将成为
+// GeneralCardDispenser.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(6E41FA2A-4E46-4A02-B18A-CD06D223EE52), version(1.0),
+  control ]
+library GeneralCardDispenserLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CGeneralCardDispenserCtrl 的主调度接口
+	[ 
+		uuid(5785410C-F4C1-44AF-8B60-E8D762B461CD)	
+	]
+	dispinterface _DGeneralCardDispenser
+	{
+		properties:
+		methods:
+			[id(1)] BSTR Open();
+			[id(2)] BSTR Close();
+			[id(3)] BSTR InboxToCar();
+			[id(4)] BSTR CarToRepo();
+			[id(5)] BSTR RepoToCar(LONG location);
+			[id(6)] BSTR CarToOutbox(LONG num);
+			[id(7)] BSTR ReaderToCar(LONG readerId);
+			[id(8)] BSTR CarToReader(LONG readerId);
+			[id(9)] BSTR CarToCardPrinter(LONG port);
+			[id(10)] BSTR CardPrinterToCar(LONG port);
+			[id(11)] BSTR CarToOCR();
+			[id(12)] BSTR OCRToCar();
+			[id(13)] BSTR CarToEmboss();
+			[id(14)] BSTR EmbossToCar();
+			[id(15)] BSTR CarStatus();
+			[id(16)] BSTR InboxStatus();
+			[id(17)] BSTR RepoStatus();
+			[id(18)] BSTR OutboxStatus();
+			[id(19)] BSTR CardPrinterStatus();
+			[id(20)] BSTR ReaderStatus(LONG id);
+			[id(21)] BSTR OCRStatus();
+			[id(22)] BSTR EmbossStatus();
+			[id(23)] BSTR Reset(LONG type);
+			[id(24)] BSTR ReaderReadSSInfo(LONG zone);
+			[id(25)] BSTR ReaderReadBKNum();
+			[id(26)] BSTR RepoUsedNum();
+			[id(27)] BSTR RepoUsedSlots();
+			[id(28)] BSTR ReaderCardIn(LONG readerId, LONG timeout);
+			[id(29)] BSTR ReaderCardOut(LONG readerId, LONG timeout);
+	};
+
+	//  CGeneralCardDispenserCtrl 的事件调度接口
+
+	[ 
+		uuid(DAC5958B-CE78-45DA-9DEF-2287A753D382)	
+	]
+	dispinterface _DGeneralCardDispenserEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+			[id(1)] void OnOpen(BSTR msg);
+			[id(2)] void OnClose(BSTR msg);
+			[id(3)] void OnInboxToCar(BSTR msg);
+			[id(4)] void OnCarToRepo(BSTR msg);
+			[id(5)] void OnRepoToCar(BSTR msg);
+			[id(6)] void OnCarToOutbox(BSTR msg);
+			[id(7)] void OnReaderToCar(BSTR msg);
+			[id(8)] void OnCarToReader(BSTR msg);
+			[id(9)] void OnCarToCardPrinter(BSTR msg);
+			[id(10)] void OnCardPrinterToCar(BSTR msg);
+			[id(11)] void OnCarToOCR(BSTR msg);
+			[id(12)] void OnOCRToCar(BSTR msg);
+			[id(13)] void OnCarToEmboss(BSTR msg);
+			[id(14)] void OnEmbossToCar(BSTR msg);
+			[id(15)] void OnCarStatus(BSTR msg);
+			[id(16)] void OnInboxStatus(BSTR msg);
+			[id(17)] void OnRepoStatus(BSTR msg);
+			[id(18)] void OnOutboxStatus(BSTR msg);
+			[id(19)] void OnCardPrinterStatus(BSTR msg);
+			[id(20)] void OnOCRStatus(BSTR msg);
+			[id(21)] void OnEmbossStatus(BSTR msg);
+			[id(22)] void OnReaderStatus(BSTR msg);
+			[id(23)] void OnReset(BSTR msg);
+			[id(24)] void OnReaderReadSSInfo(BSTR msg);
+			[id(25)] void OnReaderReadBKNum(BSTR msg);
+			[id(26)] void OnRepoUsedNum(BSTR msg);
+			[id(27)] void OnRepoUsedSlots(BSTR msg);
+			[id(28)] void OnReaderCardIn(BSTR msg);
+			[id(29)] void OnReaderCardOut(BSTR msg);
+	};
+
+	//  CGeneralCardDispenserCtrl 的类信息
+	[
+		uuid(F2099AE7-A01C-4C16-8242-BD343DFE385B)
+	]
+	coclass GeneralCardDispenser
+	{
+		[default] dispinterface _DGeneralCardDispenser;
+		[default, source] dispinterface _DGeneralCardDispenserEvents;
+	};
+
+};

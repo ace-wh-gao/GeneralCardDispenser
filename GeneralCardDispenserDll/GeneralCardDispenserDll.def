@@ -1,0 +1,35 @@
+; GeneralCardDispenserDll.def : 声明 DLL 的模块参数。
+
+LIBRARY
+
+EXPORTS
+    ; 此处可以是显式导出
+	GCDOpen
+	GCDClose
+	GCDInboxToCar
+	GCDCarToRepo
+	GCDRepoToCar
+	GCDCarToOutbox
+	GCDReaderToCar
+	GCDCarToReader
+	GCDCarToCardPrinter
+	GCDCardPrinterToCar
+	GCDCarToOCR
+	GCDOCRToCar
+	GCDCarToEmboss
+	GCDEmbossToCar
+	GCDCarStatus
+	GCDInboxStatus
+	GCDRepoStatus
+	GCDOutboxStatus
+	GCDCardPrinterStatus
+	GCDReaderStatus
+	GCDOCRStatus
+	GCDEmbossStatus
+	GCDReset
+	GCDReaderReadSSInfo
+	GCDReaderReadBKNum
+	GCDRepoUsedNum
+	GCDRepoUsedSlots
+	GCDReaderCardIn
+	GCDReaderCardOut

@@ -1,0 +1,324 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        .result {
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <object classid="clsid:F2099AE7-A01C-4C16-8242-BD343DFE385B" id="ocxid" width="0px" height="0px"></object>
+    <div style="position: fixed;">
+        <p>
+            <div>
+                结果<input class="result" type="text" id="resultid">
+            </div>
+            <div>
+                事件<input class="result" type="text" id="resulteventid">
+            </div>
+        </p>
+    </div>
+    <div style="height: 3rem;"></div>
+    <div>
+        <p>
+            <button onclick="OnOpen()">打开</button>
+            <button onclick="OnClose()">关闭</button>
+            <button onclick="OnReset()">复位</button>
+        </p>
+        <p>
+            <div><button onclick="OnInbox2Car()">发卡箱到小车</button></div>
+        </p>
+        <p>
+            <div>
+                <button onclick="OnCar2Repo()">小车到卡库</button>
+                <button onclick="OnRepo2Car()">卡库到小车</button>
+            </div>
+            <div>
+                <button onclick="OnCar2Outbox()">小车到出卡箱</button>
+            </div>
+            <div>
+                <button onclick="OnReader2Car()">读卡器到小车</button>
+                <button onclick="OnCar2Reader()">小车到读卡器</button>
+            </div>
+            <div>
+                <button onclick="OnCar2CardPrinter()">小车到证卡打印机</button>
+                <button onclick="OnCardPrinter2Car()">证卡打印机到小车</button>
+            </div>
+            <div>
+                <button onclick="OnCar2OCR()">小车到OCR</button>
+                <button onclick="OnOCR2Car()">OCR到小车</button>
+            </div>
+            <div>
+                <button onclick="OnCar2Emboss()">小车到凸印机</button>
+                <button onclick="OnEmboss2Car()">凸印机到小车</button>
+            </div>
+        </p>
+        <p>
+            <button onclick="OnCarStatus()">传输小车状态</button>
+            <button onclick="OnInboxStatus()">发卡箱状态</button>
+            <button onclick="OnRepoStatus()">卡库状态</button>
+            <button onclick="OnOutboxStatus()">出卡箱状态</button>
+            <button onclick="OnCardPrinterStatus()">证卡打印机状态</button>
+            <button onclick="OnReaderStatus()">读卡器状态</button>
+            <button onclick="OnOCRStatus()">OCR状态</button>
+            <button onclick="OnEmbossStatus()">凸印机状态</button>
+        </p>
+        <p>
+            <button onclick="OnReaderCardIn()">读卡器进卡</button>
+            <button onclick="OnReaderCardOut()">读卡器出卡</button>
+            <button onclick="onReaderReadSSInfo()">读社保信息</button>
+            <button onclick="OnReaderReadBKNum()">读银行卡号</button>
+        </p>
+        <p>
+            <button onclick="onRepoUsedNum()">卡库使用量</button>
+            <button onclick="OnRepoUsedSlots()">卡库已使用的卡槽号</button>
+        </p>
+    </div>
+
+    <script type="text/javascript" for="ocxid" event="OnOpen(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnClose(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnInboxToCar(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarToRepo(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnRepoToCar(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarToOutbox(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarToReader(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReaderToCar(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarToCardPrinter(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCardPrinterToCar(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarToOCR(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnOCRToCar(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarToEmboss(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnEmbossToCar(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCarStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReaderStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnRepoStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnOutboxStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnCardPrinterStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnInboxStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnOCRStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnEmbossStatus(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReset(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReaderReadSSInfo(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReaderReadBKNum(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnRepoUsedNum(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnRepoUsedSlots(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReaderCardIn(msg)">
+        evenResu.value = msg
+    </script>
+    <script type="text/javascript" for="ocxid" event="OnReaderCardOut(msg)">
+        evenResu.value = msg
+    </script>
+
+    <script type="text/javascript">
+        ocx = document.getElementById("ocxid");
+        result = document.getElementById("resultid");
+        evenResu = document.getElementById("resulteventid");
+
+        // 读卡器出卡
+        function OnReaderCardOut() {
+            evenResu.value = "";
+            result.value = ocx.ReaderCardOut(0, 10000);
+        }
+        // 读卡器进卡
+        function OnReaderCardIn() {
+            evenResu.value = "";
+            result.value = ocx.ReaderCardIn(0, 10000);
+        }
+        // 卡库已使用的卡槽号
+        function OnRepoUsedSlots() {
+            evenResu.value = "";
+            result.value = ocx.RepoUsedSlots();
+        }
+        // 卡库使用量
+        function onRepoUsedNum() {
+            evenResu.value = "";
+            result.value = ocx.RepoUsedNum();
+        }
+        // 读银行卡号
+        function OnReaderReadBKNum() {
+            evenResu.value = "";
+            result.value = ocx.ReaderReadBKNum();
+        }
+
+        // 读社保卡信息
+        function onReaderReadSSInfo() {
+            evenResu.value = "";
+            result.value = ocx.ReaderReadSSInfo(0);
+        }
+        // 复位
+        function OnReset() {
+            evenResu.value = "";
+            result.value = ocx.Reset(3);
+        }
+        // 凸印机状态
+        function OnEmbossStatus() {
+            evenResu.value = "";
+            result.value = ocx.EmbossStatus();
+        }
+        // OCR状态
+        function OnOCRStatus() {
+            evenResu.value = "";
+            result.value = ocx.OCRStatus();
+        }
+        // 读卡器状态
+        function OnReaderStatus() {
+            evenResu.value = "";
+            result.value = ocx.ReaderStatus(2);
+        }
+        // 证卡打印机状态
+        function OnCardPrinterStatus() {
+            evenResu.value = "";
+            result.value = ocx.CardPrinterStatus();
+        }
+        // 出卡箱状态
+        function OnOutboxStatus() {
+            evenResu.value = "";
+            result.value = ocx.OutboxStatus();
+        }
+        // 卡库状态
+        function OnRepoStatus() {
+            evenResu.value = "";
+            result.value = ocx.RepoStatus();
+        }
+        // 发卡箱状态
+        function OnInboxStatus() {
+            evenResu.value = "";
+            result.value = ocx.InboxStatus();
+        }
+        // 传输小车状态
+        function OnCarStatus() {
+            evenResu.value = "";
+            result.value = ocx.CarStatus();
+        }
+        // 凸印机到小车
+        function OnEmboss2Car() {
+            evenResu.value = "";
+            result.value = ocx.EmbossToCar();
+        }
+        // 小车到凸印机
+        function OnCar2Emboss() {
+            evenResu.value = "";
+            result.value = ocx.CarToEmboss();
+        }
+        // OCR到小车
+        function OnOCR2Car() {
+            evenResu.value = "";
+            result.value = ocx.OCRToCar();
+        }
+        // 小车到OCR
+        function OnCar2OCR() {
+            evenResu.value = "";
+            result.value = ocx.CarToOCR();
+        }
+        // 小车到证卡打印机
+        function OnCar2CardPrinter() {
+            evenResu.value = "";
+            result.value = ocx.CarToCardPrinter(1);
+        }
+        // 证卡打印机到小车
+        function OnCardPrinter2Car() {
+            evenResu.value = "";
+            result.value = ocx.CardPrinterToCar(1);
+        }
+        // 小车到读卡器
+        function OnCar2Reader() {
+            evenResu.value = "";
+            result.value = ocx.CarToReader(1);
+        }
+
+        // 读卡器到小车
+        function OnReader2Car() {
+            evenResu.value = "";
+            result.value = ocx.ReaderToCar(1);
+        }
+
+        function OnCar2Outbox() {
+            evenResu.value = "";
+            result.value = ocx.CarToOutbox(1);
+        }
+
+        function OnRepo2Car() {
+            evenResu.value = "";
+            result.value = ocx.RepoToCar(10);
+        }
+
+        function OnCar2Repo() {
+            evenResu.value = "";
+            result.value = ocx.CarToRepo();
+        }
+
+        function OnOpen() {
+            evenResu.value = "";
+            result.value = ocx.Open();
+        }
+
+        function OnClose() {
+            evenResu.value = "";
+            result.value = ocx.Close();
+        }
+
+        function OnInbox2Car() {
+            evenResu.value = "";
+            result.value = ocx.InboxToCar();
+        }
+    </script>
+</body>
+
+</html>

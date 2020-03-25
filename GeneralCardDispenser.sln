@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeneralCardDispenser", "GeneralCardDispenser\GeneralCardDispenser.vcxproj", "{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeneralCardDispenserDll", "GeneralCardDispenserDll\GeneralCardDispenserDll.vcxproj", "{CF997C5D-793D-4111-87C3-B23D46E3DA46}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSCReaderFuncs", "SSCReaderFuncs\SSCReaderFuncs.vcxproj", "{6D597A4B-5DED-40FA-860E-9B718D23D71A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Debug|x64.ActiveCfg = Debug|x64
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Debug|x64.Build.0 = Debug|x64
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Debug|x86.ActiveCfg = Debug|Win32
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Debug|x86.Build.0 = Debug|Win32
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Release|x64.ActiveCfg = Release|x64
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Release|x64.Build.0 = Release|x64
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Release|x86.ActiveCfg = Release|Win32
+		{5AA7F2CD-22F8-488F-8B24-B0306AB82A90}.Release|x86.Build.0 = Release|Win32
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Debug|x64.ActiveCfg = Debug|x64
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Debug|x64.Build.0 = Debug|x64
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Debug|x86.ActiveCfg = Debug|Win32
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Debug|x86.Build.0 = Debug|Win32
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Release|x64.ActiveCfg = Release|x64
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Release|x64.Build.0 = Release|x64
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Release|x86.ActiveCfg = Release|Win32
+		{CF997C5D-793D-4111-87C3-B23D46E3DA46}.Release|x86.Build.0 = Release|Win32
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Debug|x64.ActiveCfg = Debug|x64
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Debug|x64.Build.0 = Debug|x64
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Debug|x86.ActiveCfg = Debug|Win32
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Debug|x86.Build.0 = Debug|Win32
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Release|x64.ActiveCfg = Release|x64
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Release|x64.Build.0 = Release|x64
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Release|x86.ActiveCfg = Release|Win32
+		{6D597A4B-5DED-40FA-860E-9B718D23D71A}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
