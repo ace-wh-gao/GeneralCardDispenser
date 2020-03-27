@@ -171,8 +171,12 @@ int WINAPI GCDInboxToCar(RetStatus * stat)
 // 小车到卡库
 int WINAPI GCDCarToRepo(int &posit, RetStatus * stat)
 {
-	CHECK_INIT()
+	CHECK_INIT();
 	gCardDispenser->CarToRepo(posit, stat);
+	if (stat->code == 0)
+	{
+		LOG(INFO) << "入库成功,id: " << posit;
+	}
 	return stat->code;
 }
 
@@ -181,6 +185,10 @@ int WINAPI GCDRepoToCar(int & posit, RetStatus * stat)
 {
 	CHECK_INIT();
 	gCardDispenser->RepoToCar(posit, stat);
+	if (stat->code == 0)
+	{
+		LOG(INFO) << "出库成功,id: " << posit;
+	}
 	return stat->code;
 }
 
