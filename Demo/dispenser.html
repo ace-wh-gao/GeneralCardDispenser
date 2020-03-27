@@ -34,15 +34,28 @@
         <p>
             <div>
                 <button onclick="OnCar2Repo()">小车到卡库</button>
-                <button onclick="OnRepo2Car()">卡库到小车</button>
+                <p>
+                    取卡卡槽id<input type="text" id="IdRepoSlotId">
+                    <button onclick="OnRepo2Car()">卡库到小车</button>
+                </p>
             </div>
             <div>
                 <button onclick="OnCar2Outbox()">小车到出卡箱</button>
             </div>
-            <div>
-                <button onclick="OnReader2Car()">读卡器到小车</button>
-                <button onclick="OnCar2Reader()">小车到读卡器</button>
-            </div>
+            <p>
+                <div>
+                    选择读卡器
+                    <select id="IdReaderId1" value=1>
+                        <option value=2>310读卡器</option>
+                        <option value=1>出卡口读卡器</option>
+                        <option value=0>小车读卡器</option>
+                    </select>
+                </div>
+                <div>
+                    <button onclick="OnReader2Car()">读卡器到小车</button>
+                    <button onclick="OnCar2Reader()">小车到读卡器</button>
+                </div>
+            </p>
             <div>
                 <button onclick="OnCar2CardPrinter()">小车到证卡打印机</button>
                 <button onclick="OnCardPrinter2Car()">证卡打印机到小车</button>
@@ -62,7 +75,17 @@
             <button onclick="OnRepoStatus()">卡库状态</button>
             <button onclick="OnOutboxStatus()">出卡箱状态</button>
             <button onclick="OnCardPrinterStatus()">证卡打印机状态</button>
-            <button onclick="OnReaderStatus()">读卡器状态</button>
+            <p>
+                <div>
+                    选择读卡器
+                    <select id="IdReaderId2" value=1>
+                        <option value=2>310读卡器</option>
+                        <option value=1>出卡口读卡器</option>
+                        <option value=0>小车读卡器</option>
+                    </select>
+                </div>
+                <button onclick="OnReaderStatus()">读卡器状态</button>
+            </p>
             <button onclick="OnOCRStatus()">OCR状态</button>
             <button onclick="OnEmbossStatus()">凸印机状态</button>
         </p>
@@ -89,6 +112,11 @@
     </script>
     <script type="text/javascript" for="ocxid" event="OnCarToRepo(msg)">
         evenResu.value = msg
+        var st = JSON.parse(msg);
+        // if (st.code == "0") {
+        var el = document.getElementById("IdRepoSlotId");
+        el.value = st.location.toString();
+        // }
     </script>
     <script type="text/javascript" for="ocxid" event="OnRepoToCar(msg)">
         evenResu.value = msg
@@ -219,8 +247,9 @@
         }
         // 读卡器状态
         function OnReaderStatus() {
+            var ido = document.getElementById("IdReaderId2");
             evenResu.value = "";
-            result.value = ocx.ReaderStatus(2);
+            result.value = ocx.ReaderStatus(ido.value);
         }
         // 证卡打印机状态
         function OnCardPrinterStatus() {
@@ -279,14 +308,16 @@
         }
         // 小车到读卡器
         function OnCar2Reader() {
+            var ido = document.getElementById("IdReaderId1");
             evenResu.value = "";
-            result.value = ocx.CarToReader(1);
+            result.value = ocx.CarToReader(ido.value);
         }
 
         // 读卡器到小车
         function OnReader2Car() {
+            var ido = document.getElementById("IdReaderId1");
             evenResu.value = "";
-            result.value = ocx.ReaderToCar(1);
+            result.value = ocx.ReaderToCar(ido.value);
         }
 
         function OnCar2Outbox() {
@@ -295,8 +326,9 @@
         }
 
         function OnRepo2Car() {
+            var elsot = document.getElementById("IdRepoSlotId");
             evenResu.value = "";
-            result.value = ocx.RepoToCar(10);
+            result.value = ocx.RepoToCar(Number(elsot.value));
         }
 
         function OnCar2Repo() {
