@@ -53,4 +53,5 @@ private:
 	std::shared_ptr<SSCApduSender> mSender;
 	int SendApduMustOk(std::string send, std::string resp);
 	int SendApdu(std::string send, std::string &resp);
+	int SendApduSw(CString send, CString &resp, DWORD &SW1SW2);
 };

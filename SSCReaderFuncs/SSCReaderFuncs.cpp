@@ -64,7 +64,7 @@ CSSCReaderFuncsApp theApp;
 BOOL CSSCReaderFuncsApp::InitInstance()
 {
 	CWinApp::InitInstance();
-
+	initLog();
 	return TRUE;
 }
 
@@ -108,12 +108,12 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 	CString sResp;
 	CString gfbb;  //规范版本，区分是几代社保卡
 	DWORD sw;
-	int ret = mSender->apdu(_T("0084000008"), sResp, sw);
+	int ret = SendApduSw(_T("0084000008"), sResp, sw);
 	if (ret) {
 		return ret;
 	}
 	info.random = sResp;  //随机数
-	if (mSender->apdu(_T("00A404000F7378312E73682EC9E7BBE1B1A3D5CF"), sResp,
+	if (SendApduSw(_T("00A404000F7378312E73682EC9E7BBE1B1A3D5CF"), sResp,
 		sw)) {
 		return ERR_AS_TRANS;
 	}
@@ -122,7 +122,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 	}
 
 	sResp.Empty();
-	if (mSender->apdu(_T("00b2032c06"), sResp, sw)) {
+	if (SendApduSw(_T("00b2032c06"), sResp, sw)) {
 		return ERR_AS_TRANS;
 	}
 	if (0x9000 != sw) {
@@ -132,14 +132,14 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 	gfbb = sResp.Mid(4, 2);
 	if (_T("32") == gfbb || _T("00") == gfbb) {  //二代卡
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2012c12"), sResp, sw)) {
+		if (SendApduSw(_T("00b2012c12"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
 			return ERR_APDU_SW;
 		}
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2042c0E"), sResp, sw)) {
+		if (SendApduSw(_T("00b2042c0E"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -147,7 +147,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		}
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2052c06"), sResp, sw)) {
+		if (SendApduSw(_T("00b2052c06"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -156,7 +156,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		info.fkrq = sResp.Right(sResp.GetLength() - 4);  //发卡日期
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2062c06"), sResp, sw)) {
+		if (SendApduSw(_T("00b2062c06"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -165,7 +165,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		info.yxrq = sResp.Right(sResp.GetLength() - 4);  //卡有效期
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2072c0B"), sResp, sw)) {
+		if (SendApduSw(_T("00b2072c0B"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -175,7 +175,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		hb.DecodeToCString(sResp, info.ssno);  //社保卡号
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2013414"), sResp, sw)) {
+		if (SendApduSw(_T("00b2013414"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -185,7 +185,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		hb.DecodeToCString(sResp, info.idnum);  //身份证号
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2023420"), sResp, sw)) {
+		if (SendApduSw(_T("00b2023420"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -195,7 +195,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		hb.DecodeToCString(sResp, info.name);  //姓名
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2043403"), sResp, sw)) {
+		if (SendApduSw(_T("00b2043403"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -206,14 +206,14 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 	}
 	else if (_T("31") == gfbb) {             //一代卡
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2012c12"), sResp, sw)) {
+		if (SendApduSw(_T("00b2012c12"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
 			return ERR_APDU_SW;
 		}
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2042c0E"), sResp, sw)) {
+		if (SendApduSw(_T("00b2042c0E"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -221,7 +221,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		}
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2052c06"), sResp, sw)) {
+		if (SendApduSw(_T("00b2052c06"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -230,7 +230,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		info.fkrq = sResp.Right(sResp.GetLength() - 4);  //发卡日期
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2062c06"), sResp, sw)) {
+		if (SendApduSw(_T("00b2062c06"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -239,7 +239,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		info.yxrq = sResp.Right(sResp.GetLength() - 4);  //卡有效期
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2072c0B"), sResp, sw)) {
+		if (SendApduSw(_T("00b2072c0B"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -249,7 +249,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		hb.DecodeToCString(sResp, info.ssno);  //社保卡号
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2013414"), sResp, sw)) {
+		if (SendApduSw(_T("00b2013414"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -259,7 +259,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		hb.DecodeToCString(sResp, info.idnum);  //身份证号
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2023420"), sResp, sw)) {
+		if (SendApduSw(_T("00b2023420"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -269,7 +269,7 @@ int SSCReaderFuncs::ReadCardBaseInfo(SSCBaseInfo & info)
 		hb.DecodeToCString(sResp, info.name);  //姓名
 
 		sResp.Empty();
-		if (mSender->apdu(_T("00b2033403"), sResp, sw)) {
+		if (SendApduSw(_T("00b2033403"), sResp, sw)) {
 			return ERR_AS_TRANS;
 		}
 		if (0x9000 != sw) {
@@ -455,19 +455,23 @@ int SSCReaderFuncs::SendApduMustOk(std::string send, std::string resp)
 {
 	CString sResp;
 	DWORD sw;
+	LOG(DEBUG) << "send: " << send;
 	USES_CONVERSION;
-	int ret = mSender->apdu(CString(send.c_str()), sResp, sw);
+	int ret = mSender->apdu(CString(send.c_str()), sResp, sw);	
 	if (ret) {
 		return ERR_AS_TRANS;
 	}
-	if (sw != 0x9000)
+	if (sw == 0x9000)
 	{
-		sResp.Append(_T("%04X"), sw);
 		resp = string(T2A(sResp));
+		LOG(DEBUG) << "resp: " << resp;
 		return 0;
 	}
 	else
 	{
+		CString s;
+		s.Format(_T("%04X"), sw);
+		LOG(DEBUG) << "resp: " << T2A(s);
 		return ERR_APDU_SW;
 	}
 }
@@ -477,15 +481,34 @@ int SSCReaderFuncs::SendApdu(std::string send, std::string &resp)
 	CString s;
 	CString r;
 	DWORD sw;
+	LOG(DEBUG) << "send: " << send;
 	USES_CONVERSION;
 	s = A2T(send.c_str());
 	int ret = mSender->apdu(s, r, sw);
 	if (ret != 0)
 	{
+		LOG(ERROR) << "err: " << ret;
 		return ret;
 	}
 	r.Append(_T("%04X"), sw);
 	resp = string(T2A(r));
+	LOG(DEBUG) << "resp: " << resp;
 	return 0;
+}
+
+int SSCReaderFuncs::SendApduSw(CString send, CString & resp, DWORD & SW1SW2)
+{
+	LOG(DEBUG) << "send: " << send;
+	int ret = mSender->apdu(send, resp, SW1SW2);
+	if (ret < 0)
+	{
+		LOG(ERROR) << "err: " << ret;
+		return ret;
+	}
+	CString s;
+	s.Format(_T("%04X"), SW1SW2);
+	USES_CONVERSION;
+	LOG(DEBUG) << "resp: " << resp << T2A(s);
+	return ret;
 }
 

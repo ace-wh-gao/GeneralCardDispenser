@@ -7,6 +7,7 @@
 #include "RetStatus.h"
 #include "../SSCReaderFuncs/SSCReaderFuncs.h"
 #include "errcode.h"
+#include "hexbin.h"
 
 using namespace std;
 
@@ -251,8 +252,28 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 			BYTE r[1024] = { 0 };
 			int slen = 0;
 			int rlen = 0;
-			int ret = RFCardSendAPDU310_004(0, s, slen, r, &rlen);
-			return ret == 0 ? 0 : ERR_AS_TRANS;
+			HexBin hb;
+			int ret = hb.Decode(send, s, slen);
+			if (ret < 0)
+			{
+				return -1;
+			}
+			ret = RFCardSendAPDU310_004(0, s, slen, r, &rlen);
+			if (ret != 0)
+			{
+				return ERR_AS_TRANS;
+			}
+			if (rlen == 2)
+			{
+				resp = _T("");
+			}
+			else
+			{
+				hb.Encode(r, rlen - 2, resp);
+				
+			}
+			SW1SW2 = r[0] << 8 + r[1];
+			return 0;
 		};
 		break;
 	case READER_ID_OUTPORT: // 卡口读卡器
@@ -262,8 +283,28 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 			BYTE r[1024] = { 0 };
 			int slen = 0;
 			int rlen = 0;
-			int ret = ICCardSendAPDU310_004(1, 0, s, slen, r, &rlen);
-			return ret == 0 ? 0 : ERR_AS_TRANS;
+			HexBin hb;
+			int ret = hb.Decode(send, s, slen);
+			if (ret < 0)
+			{
+				return -1;
+			}
+			ret = ICCardSendAPDU310_004(1, 0, s, slen, r, &rlen);
+			if (ret != 0)
+			{
+				return ERR_AS_TRANS;
+			}
+			if (rlen == 2)
+			{
+				resp = _T("");
+			}
+			else
+			{
+				hb.Encode(r, rlen - 2, resp);
+
+			}
+			SW1SW2 = r[0] << 8 + r[1];
+			return 0;
 		};
 		break;
 	case READER_ID_CARD_PRINTER: // 证卡读卡器
@@ -273,11 +314,32 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 			BYTE r[1024] = { 0 };
 			int slen = 0;
 			int rlen = 0;
-			int ret = RWICSendAPDU(s, slen, r, &rlen);
-			return ret == 0 ? 0 : ERR_AS_TRANS;
+			HexBin hb;
+			int ret = hb.Decode(send, s, slen);
+			if (ret < 0)
+			{
+				return -1;
+			}
+			ret = RWICSendAPDU(s, slen, r, &rlen);
+			if (ret != 0)
+			{
+				return ERR_AS_TRANS;
+			}
+			if (rlen == 2)
+			{
+				resp = _T("");
+			}
+			else
+			{
+				hb.Encode(r, rlen - 2, resp);
+
+			}
+			SW1SW2 = r[0] << 8 + r[1];
+			return 0;
 		};
 		break;
 	default:
+		LOG(ERROR) << "不支持的读卡器id.id=" << readerId;
 		ret = -1;
 		break;
 	}
@@ -650,6 +712,13 @@ void CCZ_QZ05CT::CarToCardPrinter(int port, RetStatus * stat)
 		stat->msg = getErrMsg(ret);
 		return;
 	}
+	Close(stat);
+	if (stat->code != 0)
+	{
+		LOG(DEBUG) << "让出设备给证卡打印机控件失败。";
+		return;
+	}
+	LOG(DEBUG) << "关闭领卡模块.让出设备给证卡打印机控件调用。";
 	*stat = RS_OK;
 }
 

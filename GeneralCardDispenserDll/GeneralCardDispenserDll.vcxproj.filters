@@ -42,6 +42,9 @@
     <ClCompile Include="RetStatus.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="HexBin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneralCardDispenserDll.h">
@@ -81,6 +84,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CRT_591_QZ05_CT3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HexBin.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

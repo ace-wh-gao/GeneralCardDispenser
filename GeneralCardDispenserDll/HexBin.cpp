@@ -68,6 +68,7 @@ int HexBin::Decode(CString hex, BYTE * bin, int & len)
 		bin[i] = Nibble[0] << 4;  // Set the high nibble
 		bin[i] |= Nibble[1];      // Set the low nibble
 	}                            // for (int i = ...)
+	len = nHexLen;
 	return 0;
 }
 

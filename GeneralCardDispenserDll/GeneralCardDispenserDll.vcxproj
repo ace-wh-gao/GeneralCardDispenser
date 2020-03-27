@@ -195,6 +195,7 @@
     <ClCompile Include="devcfg.cpp" />
     <ClCompile Include="easylogging++.cc" />
     <ClCompile Include="GeneralCardDispenserDll.cpp" />
+    <ClCompile Include="HexBin.cpp" />
     <ClCompile Include="RetStatus.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -213,6 +214,7 @@
     <ClInclude Include="easylogging++.h" />
     <ClInclude Include="errcode.h" />
     <ClInclude Include="GeneralCardDispenserDll.h" />
+    <ClInclude Include="HexBin.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RetStatus.h" />
     <ClInclude Include="stdafx.h" />
