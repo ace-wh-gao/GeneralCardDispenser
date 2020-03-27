@@ -1,0 +1,1 @@
+del *.exp *.iobj *.lib *.pdb *.ipdb *.log *.ilk *.lic
