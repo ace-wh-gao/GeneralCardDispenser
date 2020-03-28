@@ -34,7 +34,7 @@ int HexBin::Encode(BYTE * bin, int len, CString & hex)
 	}
 	for (int i = 0; i < len; ++i)
 	{
-		hex.Format(sf, bin[i]);
+		hex.AppendFormat(sf, bin[i]);
 	}
 	return 0;
 }

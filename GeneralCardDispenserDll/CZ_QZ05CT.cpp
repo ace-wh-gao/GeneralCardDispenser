@@ -407,6 +407,12 @@ void CCZ_QZ05CT::ActiveCard(int readerId, RetStatus * stat)
 		stat->msg = "¶Á¿¨Æ÷¼¤»îIC¿¨Ê§°Ü";
 		return;
 	}
+	*stat = RS_OK;
+	HexBin hb;
+	CString csAtr;
+	hb.Encode(atr, alen, csAtr);
+	USES_CONVERSION;
+	LOG(DEBUG) << "IC¿¨¼¤»î³É¹¦¡£atr = " << T2A(csAtr);
 }
 
 void CCZ_QZ05CT::LoadCfg(RetStatus * stat)

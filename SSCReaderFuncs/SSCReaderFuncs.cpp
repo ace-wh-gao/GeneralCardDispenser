@@ -498,7 +498,8 @@ int SSCReaderFuncs::SendApdu(std::string send, std::string &resp)
 
 int SSCReaderFuncs::SendApduSw(CString send, CString & resp, DWORD & SW1SW2)
 {
-	LOG(DEBUG) << "send: " << send;
+	USES_CONVERSION;
+	LOG(DEBUG) << "send: " << T2A(send);
 	int ret = mSender->apdu(send, resp, SW1SW2);
 	if (ret < 0)
 	{
@@ -507,7 +508,6 @@ int SSCReaderFuncs::SendApduSw(CString send, CString & resp, DWORD & SW1SW2)
 	}
 	CString s;
 	s.Format(_T("%04X"), SW1SW2);
-	USES_CONVERSION;
 	LOG(DEBUG) << "resp: " << resp << T2A(s);
 	return ret;
 }
