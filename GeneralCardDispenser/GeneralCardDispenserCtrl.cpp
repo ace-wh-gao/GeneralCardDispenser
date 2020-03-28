@@ -211,8 +211,8 @@ BEGIN_DISPATCH_MAP(CGeneralCardDispenserCtrl, COleControl)
 	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "OCRStatus", dispidOCRStatus, OCRStatus, VT_BSTR, VTS_NONE)
 	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "EmbossStatus", dispidEmbossStatus, EmbossStatus, VT_BSTR, VTS_NONE)
 	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "Reset", dispidReset, Reset, VT_BSTR, VTS_I4)
-	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "ReaderReadSSInfo", dispidReaderReadSSInfo, ReaderReadSSInfo, VT_BSTR, VTS_I4)
-	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "ReaderReadBKNum", dispidReaderReadBKNum, ReaderReadBKNum, VT_BSTR, VTS_NONE)
+	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "ReaderReadSSInfo", dispidReaderReadSSInfo, ReaderReadSSInfo, VT_BSTR, VTS_I4 VTS_I4)
+	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "ReaderReadBKNum", dispidReaderReadBKNum, ReaderReadBKNum, VT_BSTR, VTS_I4)
 	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "RepoUsedNum", dispidRepoUsedNum, RepoUsedNum, VT_BSTR, VTS_NONE)
 	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "RepoUsedSlots", dispidRepoUsedSlots, RepoUsedSlots, VT_BSTR, VTS_NONE)
 	DISP_FUNCTION_ID(CGeneralCardDispenserCtrl, "ReaderCardIn", dispidReaderCardIn, ReaderCardIn, VT_BSTR, VTS_I4 VTS_I4)
@@ -1252,7 +1252,7 @@ UINT TaskReaderReadSSInfo(LPVOID pParam)
 	return 0;
 }
 
-BSTR CGeneralCardDispenserCtrl::ReaderReadSSInfo(LONG zone)
+BSTR CGeneralCardDispenserCtrl::ReaderReadSSInfo(LONG readerId, LONG zone)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -1265,6 +1265,7 @@ BSTR CGeneralCardDispenserCtrl::ReaderReadSSInfo(LONG zone)
 	else
 	{
 		SetIsWorking(TRUE);
+		gReaderId = (int)readerId;
 		gZone = (int)zone;
 		AfxBeginThread(TaskReaderReadSSInfo, this);
 	}
@@ -1288,7 +1289,7 @@ UINT TaskReaderReadBKNum(LPVOID pParam)
 	return 0;
 }
 
-BSTR CGeneralCardDispenserCtrl::ReaderReadBKNum()
+BSTR CGeneralCardDispenserCtrl::ReaderReadBKNum(LONG readerId)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -1301,6 +1302,7 @@ BSTR CGeneralCardDispenserCtrl::ReaderReadBKNum()
 	else
 	{
 		SetIsWorking(TRUE);
+		gReaderId = (int)readerId;
 		AfxBeginThread(TaskReaderReadBKNum, this);
 	}
 

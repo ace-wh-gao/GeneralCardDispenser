@@ -23,11 +23,13 @@
     </div>
     <div style="height: 3rem;"></div>
     <div>
+        <h3>整机接口</h3>
         <p>
             <button onclick="OnOpen()">打开</button>
             <button onclick="OnClose()">关闭</button>
             <button onclick="OnReset()">复位</button>
         </p>
+        <h3>运输接口</h3>
         <p>
             <div><button onclick="OnInbox2Car()">发卡箱到小车</button></div>
         </p>
@@ -69,6 +71,7 @@
                 <button onclick="OnEmboss2Car()">凸印机到小车</button>
             </div>
         </p>
+        <h3>状态接口</h3>
         <p>
             <button onclick="OnCarStatus()">传输小车状态</button>
             <button onclick="OnInboxStatus()">发卡箱状态</button>
@@ -89,12 +92,24 @@
             <button onclick="OnOCRStatus()">OCR状态</button>
             <button onclick="OnEmbossStatus()">凸印机状态</button>
         </p>
+        <h3>读卡器接口</h3>
         <p>
-            <button onclick="OnReaderCardIn()">读卡器进卡</button>
-            <button onclick="OnReaderCardOut()">读卡器出卡</button>
+            <div>
+                选择读卡器
+                <select id="IdReaderId3" value=1>
+                    <option value=2>310读卡器</option>
+                    <option value=1>出卡口读卡器</option>
+                    <option value=0>小车读卡器</option>
+                </select>
+            </div>
             <button onclick="onReaderReadSSInfo()">读社保信息</button>
             <button onclick="OnReaderReadBKNum()">读银行卡号</button>
         </p>
+        <p>
+            <button onclick="OnReaderCardIn()">出卡口读卡器进卡</button>
+            <button onclick="OnReaderCardOut()">出卡口读卡器出卡</button>
+        </p>
+        <h3>卡库接口</h3>
         <p>
             <button onclick="onRepoUsedNum()">卡库使用量</button>
             <button onclick="OnRepoUsedSlots()">卡库已使用的卡槽号</button>
@@ -113,10 +128,10 @@
     <script type="text/javascript" for="ocxid" event="OnCarToRepo(msg)">
         evenResu.value = msg
         var st = JSON.parse(msg);
-        // if (st.code == "0") {
-        var el = document.getElementById("IdRepoSlotId");
-        el.value = st.location.toString();
-        // }
+        if (st.code == "0") {
+            var el = document.getElementById("IdRepoSlotId");
+            el.value = st.location.toString();
+        }
     </script>
     <script type="text/javascript" for="ocxid" event="OnRepoToCar(msg)">
         evenResu.value = msg
@@ -199,15 +214,15 @@
         result = document.getElementById("resultid");
         evenResu = document.getElementById("resulteventid");
 
-        // 读卡器出卡
+        // 卡口读卡器出卡
         function OnReaderCardOut() {
             evenResu.value = "";
-            result.value = ocx.ReaderCardOut(0, 10000);
+            result.value = ocx.ReaderCardOut(1, 10000);
         }
-        // 读卡器进卡
+        // 卡口读卡器进卡
         function OnReaderCardIn() {
             evenResu.value = "";
-            result.value = ocx.ReaderCardIn(0, 10000);
+            result.value = ocx.ReaderCardIn(1, 10000);
         }
         // 卡库已使用的卡槽号
         function OnRepoUsedSlots() {
@@ -221,14 +236,16 @@
         }
         // 读银行卡号
         function OnReaderReadBKNum() {
+            var ido = document.getElementById("IdReaderId3");
             evenResu.value = "";
-            result.value = ocx.ReaderReadBKNum();
+            result.value = ocx.ReaderReadBKNum(ido.value);
         }
 
         // 读社保卡信息
         function onReaderReadSSInfo() {
+            var ido = document.getElementById("IdReaderId3");
             evenResu.value = "";
-            result.value = ocx.ReaderReadSSInfo(0);
+            result.value = ocx.ReaderReadSSInfo(ido.value);
         }
         // 复位
         function OnReset() {

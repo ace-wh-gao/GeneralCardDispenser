@@ -257,13 +257,13 @@ protected:
 	{
 		FireEvent(eventidOnReset, EVENT_PARAM(VTS_BSTR), msg);
 	}
-	BSTR ReaderReadSSInfo(LONG zone);
+	BSTR ReaderReadSSInfo(LONG readerId, LONG zone);
 
 	void FireReaderReadSSInfoEvent(LPCTSTR msg)
 	{
 		FireEvent(eventidOnReaderReadSSInfo, EVENT_PARAM(VTS_BSTR), msg);
 	}
-	BSTR ReaderReadBKNum();
+	BSTR ReaderReadBKNum(LONG readerId);
 
 	void FireReaderReadBKNumEvent(LPCTSTR msg)
 	{

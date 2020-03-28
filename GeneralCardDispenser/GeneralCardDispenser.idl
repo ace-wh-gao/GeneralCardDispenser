@@ -44,8 +44,8 @@ library GeneralCardDispenserLib
 			[id(21)] BSTR OCRStatus();
 			[id(22)] BSTR EmbossStatus();
 			[id(23)] BSTR Reset(LONG type);
-			[id(24)] BSTR ReaderReadSSInfo(LONG zone);
-			[id(25)] BSTR ReaderReadBKNum();
+			[id(24)] BSTR ReaderReadSSInfo(LONG readerId, LONG zone);
+			[id(25)] BSTR ReaderReadBKNum(LONG readerId);
 			[id(26)] BSTR RepoUsedNum();
 			[id(27)] BSTR RepoUsedSlots();
 			[id(28)] BSTR ReaderCardIn(LONG readerId, LONG timeout);
