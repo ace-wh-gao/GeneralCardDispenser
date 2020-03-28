@@ -458,7 +458,8 @@ int SSCReaderFuncs::SendApduMustOk(std::string send, std::string resp)
 	LOG(DEBUG) << "send: " << send;
 	USES_CONVERSION;
 	int ret = mSender->apdu(CString(send.c_str()), sResp, sw);	
-	if (ret) {
+	if (ret != 0) {
+		LOG(ERROR) << "err: " << ret;
 		return ERR_AS_TRANS;
 	}
 	if (sw == 0x9000)

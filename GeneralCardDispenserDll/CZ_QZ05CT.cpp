@@ -276,7 +276,7 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 			return 0;
 		};
 		break;
-	case READER_ID_OUTPORT: // ¿¨¿Ú¶Á¿¨Æ÷
+	case READER_ID_CARD_PRINTER: // Ö¤¿¨´òÓ¡»ú¶Á¿¨Æ÷
 		sender->isContactless = false;
 		sender->apdu = [](CString send, CString &resp, DWORD &SW1SW2)->int {
 			BYTE s[1024] = { 0 };
@@ -307,7 +307,7 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 			return 0;
 		};
 		break;
-	case READER_ID_CARD_PRINTER: // Ö¤¿¨¶Á¿¨Æ÷
+	case READER_ID_OUTPORT: // ¿¨¿Ú¶Á¿¨Æ÷
 		sender->isContactless = false;
 		sender->apdu = [](CString send, CString &resp, DWORD &SW1SW2)->int {
 			BYTE s[1024] = { 0 };
