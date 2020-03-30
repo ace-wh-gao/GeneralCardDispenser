@@ -20,10 +20,10 @@ typedef struct {
 #define ERR_AS_NOT_OPEN -201	// 读卡器未打开
 #define ERR_AS_TRANS -202    // 通讯错误
 #define ERR_AS_PARAM -203		// 参数错误
-typedef int (*CTDApduSend)(CString send, CString &resp, DWORD &SW1SW2);
+#define ERR_AS_SW -204		// APDU状态码错误
+#define ERR_AS_FUNC_NOT_SUPPORT -205		// 读卡功能不支持
 
-// 错误码
-#define ERR_APDU_SW -203		// APDU状态码错误
+typedef int (*CTDApduSend)(CString send, CString &resp, DWORD &SW1SW2);
 
 // 读卡器读卡结构体
 typedef struct {

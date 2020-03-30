@@ -447,6 +447,12 @@ void CCZ_QZ05CT::ReaderReadSSInfo(int zone, int readerId, SSCBaseInfo & info, Re
 		stat->level = EL_HARDWARE;
 		stat->msg = "读卡器传输错误";
 	}
+	else if (ret == ERR_AS_SW)
+	{
+		stat->code = -1;
+		stat->level = EL_SOFT;
+		stat->msg = "IC卡错误，读卡指令不支持";
+	}
 	else {
 		*stat = RS_UNKOWN;
 	}
@@ -485,6 +491,12 @@ void CCZ_QZ05CT::ReaderReadBKNum(int readerId, CString & bknum, RetStatus * stat
 		stat->code = -1;
 		stat->level = EL_HARDWARE;
 		stat->msg = "读卡器传输错误";
+	}
+	else if (ret == ERR_AS_SW || ret == ERR_AS_FUNC_NOT_SUPPORT)
+	{
+		stat->code = -1;
+		stat->level = EL_SOFT;
+		stat->msg = "IC卡错误，读卡指令不支持";
 	}
 	else {
 		*stat = RS_UNKOWN;
