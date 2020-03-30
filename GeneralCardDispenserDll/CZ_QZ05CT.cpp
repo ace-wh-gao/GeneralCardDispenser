@@ -272,7 +272,7 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 				hb.Encode(r, rlen - 2, resp);
 				
 			}
-			SW1SW2 = r[0] << 8 + r[1];
+			SW1SW2 = (int)(r[rlen - 2]) * 256 + (int)(r[rlen - 1]);
 			return 0;
 		};
 		break;
@@ -301,9 +301,8 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 			else
 			{
 				hb.Encode(r, rlen - 2, resp);
-
 			}
-			SW1SW2 = r[0] << 8 + r[1];
+			SW1SW2 = (int)(r[rlen - 2])*256 + (int)(r[rlen - 1]);
 			return 0;
 		};
 		break;
@@ -334,7 +333,7 @@ int CCZ_QZ05CT::GetReader(int readerId, shared_ptr<SSCApduSender>& sender)
 				hb.Encode(r, rlen - 2, resp);
 
 			}
-			SW1SW2 = r[0] << 8 + r[1];
+			SW1SW2 = (int)(r[rlen - 2]) * 256 + (int)(r[rlen - 1]);
 			return 0;
 		};
 		break;

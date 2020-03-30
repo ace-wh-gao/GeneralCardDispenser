@@ -471,7 +471,7 @@ int SSCReaderFuncs::SendApduMustOk(std::string send, std::string resp)
 	else
 	{
 		CString s;
-		s.Format(_T("%04X"), sw);
+		s.Format(_T("%0.4X"), sw);
 		LOG(DEBUG) << "resp: " << T2A(s);
 		return ERR_APDU_SW;
 	}
@@ -491,7 +491,7 @@ int SSCReaderFuncs::SendApdu(std::string send, std::string &resp)
 		LOG(ERROR) << "err: " << ret;
 		return ret;
 	}
-	r.Append(_T("%04X"), sw);
+	r.AppendFormat(_T("%0.4X"), sw);
 	resp = string(T2A(r));
 	LOG(DEBUG) << "resp: " << resp;
 	return 0;
@@ -508,7 +508,7 @@ int SSCReaderFuncs::SendApduSw(CString send, CString & resp, DWORD & SW1SW2)
 		return ret;
 	}
 	CString s;
-	s.Format(_T("%04X"), SW1SW2);
+	s.Format(_T("%0.4X"), SW1SW2);
 	LOG(DEBUG) << "resp: " << resp << T2A(s);
 	return ret;
 }

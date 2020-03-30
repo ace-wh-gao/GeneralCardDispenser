@@ -26,11 +26,11 @@ int HexBin::Encode(BYTE * bin, int len, CString & hex)
 	CString sf;
 	if (mIsUpper)
 	{
-		sf = _T("%02X");
+		sf = _T("%0.2X");
 	}
 	else
 	{
-		sf = _T("%02x");
+		sf = _T("%0.2x");
 	}
 	for (int i = 0; i < len; ++i)
 	{
